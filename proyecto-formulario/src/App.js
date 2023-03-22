@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import Formulario from './tsx/Formulario.tsx';
+import Formulario from './components/Formulario.tsx';
 
 function App() {
   return (
