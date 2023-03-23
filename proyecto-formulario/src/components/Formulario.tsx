@@ -1,8 +1,7 @@
 // @ts-nocheck
 import React, {createContext, useContext, useState,FormEvent,useReducer} from 'react';
 import './../css/style.css';
-import { Employee } from '../interfaces/Employee';
-
+import { Employee } from '../interfaces/Employee.ts';
 
 function Formulario(){
 
@@ -69,6 +68,17 @@ function Formulario(){
                     name='image'
                     accept="image/png, image/jpeg"/>
                 </div>
+
+                <div>
+                  <div>
+                    <input type="submit" value="desbloquear"/>
+                  </div>
+
+                  <div>
+                    <input type="submit" value="bloquear"/>
+                  </div>
+                </div>
+
             </form>
         </div>
     )
