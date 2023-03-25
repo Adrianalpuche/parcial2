@@ -11,26 +11,83 @@ function Formulario(){
 
   const [data, handleChange] = useForm<EmployeeForm>(employeeInitialState);
   const {name, birthdate , position, email,phone,photo} = data;
-  const [submitted, setSubmitted] = useState(false);
+  const [state, setState] = useState(false);
 
   const contextData : EmployeeContextData = {
     data,
     handleChange
   };
 
-  const save = (e: FormEvent<HTMLFormElement>) => {
+  const handleToggle = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setState(!state);
   };
 
 
 
     return(
-      <>
+      <React.Fragment>
         <EmployeeContext.Provider value={contextData}>
           
+          <React.Fragment className="employeeName">
+            <label className="block text-white font-bold text-sm  mb-2">Nombre del empleado</label>
+            <input
+              className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 bor" 
+              type="text" 
+              placeholder='User' 
+              name='name'  />
+          </React.Fragment>
+
+          <React.Fragment className="birthDate">
+            <label className="block text-white font-bold text-sm  mb-2">Fecha de nacimiento</label>
+            <input
+              className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 bor" 
+              type="date" 
+              name='fecha'  />
+          </React.Fragment>          
+
+          <React.Fragment className="jobRole">
+            <label className="block text-white font-bold text-sm  mb-2">Puesto de trabajo</label>
+            <select className='border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 bor" '>
+              <option value="Gerente">Gerente</option>
+              <option value="Desarrollador jr">Desarrollador jr</option>
+              <option value="Desarrollador sr">Desarrollador sr</option>
+            </select>
+          </React.Fragment>
+
+          <React.Fragment className="email">
+            <label className="block text-white font-bold text-sm  mb-2">Email</label>
+            <input
+              className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 bor" 
+              type="email" 
+              placeholder='email' 
+              name='email'  />
+          </React.Fragment>
+
+          <React.Fragment className="phone">
+            <label className="block text-white font-bold text-sm  mb-2">Telefono</label>
+            <input
+              className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 bor" 
+              type="tel" 
+              placeholder='telefono' 
+              name='telefono'  />
+          </React.Fragment>
+
+          <React.Fragment className="image">
+            <label className= "block text-white font-bold text-sm  mb-2">Imagen</label>
+            <input type="file"
+              name='image'
+              accept="image/png, image/jpeg"/>
+          </React.Fragment>
+
+          <React.Fragment className="state">
+            <button className={state ? "active" : ""} onClick={handleToggle}>
+              {state ? "Activado" : "Desactivado"}
+            </button>
+          </React.Fragment>
+
         </EmployeeContext.Provider>
-      </>
+      </React.Fragment>
     )
 }
 
