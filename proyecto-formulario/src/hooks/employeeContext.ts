@@ -21,13 +21,13 @@ export const employeeInitialState: EmployeeForm = {
 }
 
 export interface EmployeeContextData {
-  handleChange: ChangeEventHandler<HTMLInputElement> | null,
+  handleToggle: ChangeEventHandler | false,
   data: EmployeeForm,
 }
 
 const contextData: EmployeeContextData = {
   data: employeeInitialState,
-  handleChange: null,
+  handleToggle: false,
 }
 
 export const EmployeeContext = createContext<EmployeeContextData>(contextData);
