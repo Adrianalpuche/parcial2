@@ -1,5 +1,5 @@
 import React, {useContext, useState} from "react";
-import { employeeInitialState, EmployeeContextData, EmployeeContext, EmployeeForm } from "../hooks/employeeContext";
+import { employeeInitialState, EmployeeContextData, EmployeeContext, EmployeeForm } from "../hooks/employeeContext.tsx";
 
 function Card() {
 

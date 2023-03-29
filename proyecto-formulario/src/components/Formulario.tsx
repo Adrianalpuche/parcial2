@@ -3,95 +3,144 @@ import React, {createContext, useContext, useState,FormEvent,useReducer} from 'r
 import './../css/style.css';
 import useForm from '../hooks/useForm.ts';
 import { EmployeeContextData, employeeInitialState, EmployeeContext, EmployeeForm } from '../hooks/employeeContext.ts';
-import Card from './Card.tsx'
+import RolesMenu from './RolesMenu.tsx';
 
 
 function Formulario(){
 
-  // const [employee,setEmployee] = useState<Employee>()
+  // const { data, handleToggle } = useContext<EmployeeContextData>(EmployeeContext);
+  // const [employeeData, setEmployeeData] = useState<EmployeeForm>(data);
 
   const [data, handleChange] = useForm<EmployeeForm>(employeeInitialState);
   const {name, birthdate , position, email,phone,photo} = data;
   const [state, setState] = useState(false);
+  const [imagePreview, setImagePreview] = useState('');
 
+  const change = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setState(!state);
+  };
+
+  const handleImageChange = (e) => {
+  const selectedFile = e.target.files[0];
+  handleChange(e); // call the handleChange function to update the `photo` state
+  setImagePreview(URL.createObjectURL(selectedFile)); // set the image preview URL
+  }
+ 
   const contextData : EmployeeContextData = {
     data,
     handleChange
   };
 
-  const handleToggle = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setState(!state);
-  };
-
-
     return(
-      <React.Fragment>
+      <div>
         <EmployeeContext.Provider value={contextData}>
-          <form className='form'>
-            <React.Fragment className="employeeName">
+          <form onSubmit={change} className='form'>
+            <div className="employeeName">
               <label className="block text-white font-bold text-sm  mb-2">Nombre del empleado</label>
               <input
                 className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 bor" 
                 type="text" 
                 placeholder='User' 
-                name='name'  />
-            </React.Fragment>
+                name='name' 
+                value={name} onChange={handleChange} />
+            </div>
 
-            <React.Fragment className="birthDate">
+            <div className="birthDate">
               <label className="block text-white font-bold text-sm  mb-2">Fecha de nacimiento</label>
               <input
                 className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 bor" 
                 type="date" 
-                name='fecha'  />
-            </React.Fragment>          
+                name='birthdate'  
+                value={birthdate} onChange={handleChange}/>
+            </div>          
 
-            <React.Fragment className="jobRole">
+            <div className="jobRole">
               <label className="block text-white font-bold text-sm  mb-2">Puesto de trabajo</label>
-              <select className='border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 bor" '>
-                <option value="manager">Gerente</option>
-                <option value="jr">Desarrollador jr</option>
-                <option value="sr">Desarrollador sr</option>
-                <option value="Support">Soporte</option>
-                <option value="ProjectLeader">Lider de proyecto</option>
+              <select
+                name="position" 
+                value={position}
+                onChange={handleChange}
+                className='border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 bor" '>
+                <option value={1} >Gerente</option>
+                <option value={2} >Desarrollador jr</option>
+                <option value={3} >Desarrollador sr</option>
+                <option value={4} >Soporte</option>
+                <option value={5} >Lider de proyecto</option>
               </select>
-            </React.Fragment>
-
-            <React.Fragment className="email">
+            </div>
+           
+            <div className="email">
               <label className="block text-white font-bold text-sm  mb-2">Email</label>
               <input
                 className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 bor" 
                 type="email" 
                 placeholder='email' 
-                name='email'  />
-            </React.Fragment>
+                name='email'  
+                value={email} onChange={handleChange}/>
+            </div>
 
-            <React.Fragment className="phone">
+            <div className="phone">
               <label className="block text-white font-bold text-sm  mb-2">Telefono</label>
               <input
                 className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 bor" 
-                type="tel" 
-                placeholder='telefono' 
-                name='telefono'  />
-            </React.Fragment>
+                type="text" 
+                placeholder='teléfono' 
+                name='phone' 
+                value={phone} onChange={handleChange}/>
+            </div>
 
-            <React.Fragment className="image">
+            <div className="image">
               <label className= "block text-white font-bold text-sm  mb-2">Imagen</label>
-              <input type="file"
-                name='image'
-                accept="image/png, image/jpeg"/>
-            </React.Fragment>
+              <input 
+                type="file" 
+                name="photo" 
+                accept="image/png, image/jpeg" 
+                onChange={handleImageChange}
+              />
+            </div>
 
-            <React.Fragment className="state">
-              <button className={state ? "active" : ""} onClick={handleToggle}>
+            <div className="state">
+              <button className={state ? "active" : ""} onClick={handleChange}>
                 {state ? "Activado" : "Desactivado"}
               </button>
-            </React.Fragment>
+            </div>
           </form>
 
-          <Card name="testing"/>
+          <div>
+            <div>
+              <h4>Nombre: </h4>
+              <label>{name}</label>
+            </div>
+
+            <div>
+              <h4>Fecha de nacimiento: </h4>
+              <label>{birthdate}</label>
+            </div>
+
+            <div>
+              <h4>Puesto: </h4>
+              <label>{position}</label>
+            </div>
+
+            <div>
+              <h4>Correo: </h4>
+              <label>{email}</label>
+            </div>
+
+            <div>
+              <h4>Teléfono: </h4>
+              <label>{phone}</label>
+            </div>
+
+           <div>
+              <h4>Foto:</h4>
+              {imagePreview && <img src={imagePreview} alt="Employee photo" />}
+           </div>
+          </div>
+
         </EmployeeContext.Provider>
-      </React.Fragment>
+      </div>
     )
 }
 
