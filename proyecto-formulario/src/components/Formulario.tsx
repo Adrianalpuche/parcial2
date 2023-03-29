@@ -35,11 +35,12 @@ function Formulario(){
     return(
       <div>
         <EmployeeContext.Provider value={contextData}>
-          <form onSubmit={change} className='form'>
-            <div className="employeeName">
+          <div className='flex justify-center items-center h-screen'>
+          <form onSubmit={change} className='form' className="bg-blue-900 shadow-2xl shadow-indigo-800 px-8 pt-6 pb-8 mb">
+            <div className="employeeName" className='mb-4'>
               <label className="block text-white font-bold text-sm  mb-2">Nombre del empleado</label>
               <input
-                className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 bor" 
+                className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 mb-3" 
                 type="text" 
                 placeholder='User' 
                 name='name' 
@@ -49,7 +50,7 @@ function Formulario(){
             <div className="birthDate">
               <label className="block text-white font-bold text-sm  mb-2">Fecha de nacimiento</label>
               <input
-                className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 bor" 
+                className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 mb-3" 
                 type="date" 
                 name='birthdate'  
                 value={birthdate} onChange={handleChange}/>
@@ -61,7 +62,7 @@ function Formulario(){
                 name="position" 
                 value={position}
                 onChange={handleChange}
-                className='border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 bor" '>
+                className='border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 mb-3'>
                 <option value={1} >Gerente</option>
                 <option value={2} >Desarrollador jr</option>
                 <option value={3} >Desarrollador sr</option>
@@ -69,11 +70,11 @@ function Formulario(){
                 <option value={5} >Lider de proyecto</option>
               </select>
             </div>
-           
+           <div className='flex justify-between space-x-1'>
             <div className="email">
               <label className="block text-white font-bold text-sm  mb-2">Email</label>
               <input
-                className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 bor" 
+                className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 mb-3" 
                 type="email" 
                 placeholder='email' 
                 name='email'  
@@ -83,11 +84,12 @@ function Formulario(){
             <div className="phone">
               <label className="block text-white font-bold text-sm  mb-2">Telefono</label>
               <input
-                className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 bor" 
+                className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 mb-3" 
                 type="text" 
                 placeholder='teléfono' 
                 name='phone' 
                 value={phone} onChange={handleChange}/>
+            </div>
             </div>
 
             <div className="image">
@@ -103,40 +105,43 @@ function Formulario(){
             <div className="state">
               <button className={state ? "active" : ""} onClick={handleChange}>
                 {state ? "Activado" : "Desactivado"}
+                {console.log(state)}
               </button>
             </div>
           </form>
+          </div>
+          
 
-          <div>
-            <div>
-              <h4>Nombre: </h4>
-              <label>{name}</label>
-            </div>
-
-            <div>
-              <h4>Fecha de nacimiento: </h4>
-              <label>{birthdate}</label>
-            </div>
-
-            <div>
-              <h4>Puesto: </h4>
-              <label>{position}</label>
-            </div>
-
-            <div>
-              <h4>Correo: </h4>
-              <label>{email}</label>
-            </div>
-
-            <div>
-              <h4>Teléfono: </h4>
-              <label>{phone}</label>
-            </div>
-
-           <div>
-              <h4>Foto:</h4>
-              {imagePreview && <img src={imagePreview} alt="Employee photo" />}
+          <div className='max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-auto my-auto text-center '>
+              <div>
+              {imagePreview && <img src={imagePreview} alt="Employee photo" className='rounded-t-lg mb-2' />}
            </div>
+            <div>
+              <h4 className='text-white text-lg font-bold mb-2' >Nombre: </h4>
+              <label className='text-white mb-2 text-sm'>{name}</label>
+            </div>
+
+            <div>
+              <h4 className='text-white text-lg  font-bold mb-2'>Fecha de nacimiento: </h4>
+              <label className='text-white mb-2 text-sm'>{birthdate}</label>
+            </div>
+
+            <div>
+              <h4 className='text-white text-lg  font-bold mb-2'>Puesto: </h4>
+              <label className='text-white mb-2 text-sm'>{position}</label>
+            </div>
+
+            <div>
+              <h4 className='text-white text-lg  font-bold mb-2'>Correo: </h4>
+              <label className='text-white mb-2 text-sm'>{email}</label>
+            </div>
+
+            <div>
+              <h4 className='text-white text-lg  font-bold mb-2'>Teléfono: </h4>
+              <label className='text-white mb-2 text-sm'>{phone}</label>
+            </div>
+
+         
           </div>
 
         </EmployeeContext.Provider>
