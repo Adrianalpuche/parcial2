@@ -1,52 +1,57 @@
-import React, {useContext, useState} from "react";
-import { employeeInitialState, EmployeeContextData, EmployeeContext, EmployeeForm } from "../hooks/employeeContext.tsx";
+// @ts-nocheck
+import React, {createContext, useContext, useState,FormEvent,useReducer} from 'react';
+import useForm from '../hooks/useForm.ts';
+import { EmployeeContextData, employeeInitialState, EmployeeContext, EmployeeForm } from '../hooks/employeeContext.ts';
+import Formulario from './Formulario.ts';
+import './../css/style.css'
 
-function Card() {
 
-  const { data, handleToggle } = useContext<EmployeeContextData>(EmployeeContext);
-  const [employeeData, setEmployeeData] = useState<EmployeeForm>(data);
+function Card(){
 
-  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { name, value } = event.target;
-    setEmployeeData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  }
+ const {data: {
+    name, 
+    birthdate , 
+    position, 
+    email,
+    phone,
+    photo
+}} = useContext<EmployeeContextData>(EmployeeContext);
 
-  return (
-    <React.Fragment>
-      <React.Fragment>
-        <h4>Nombre: </h4>
-        <input type="text" name="name" value={employeeData.name} onChange={handleInputChange} />
-      </React.Fragment>
+    return(   
+        <div>
+            {/* <div>
+              {imagePreview && <img src={imagePreview} alt="Employee photo" className='rounded-t-lg mb-2' />}
+           </div> */}
+            <div>
+              <h4 className='text-white text-lg font-bold mb-2' >Nombre: </h4>
+              <label className='text-white mb-2 text-sm'>{name}</label>
+            </div>
 
-      <React.Fragment>
-        <h4>Fecha de nacimiento: </h4>
-        <input type="text" name="birthdate" value={employeeData.birthdate.toString()} onChange={handleInputChange} />
-      </React.Fragment>
+            {/* <div>
+              <h4 className='text-white text-lg  font-bold mb-2'>Fecha de nacimiento: </h4>
+              <label className='text-white mb-2 text-sm'>{birthdate}</label>
+            </div>
 
-      <React.Fragment>
-        <h4>Puesto: </h4>
-        <input type="text" name="position" value={employeeData.position} onChange={handleInputChange} />
-      </React.Fragment>
+            <div>
+              <h4 className='text-white text-lg  font-bold mb-2'>Puesto: </h4>
+              {position==1 && <label className='text-white mb-2 text-sm'>Gerente</label>}
+              {position==2 && <label className='text-white mb-2 text-sm'>Desarrollador Jr</label>}
+              {position==3 && <label className='text-white mb-2 text-sm'>Desarrollador Sr</label>}
+              {position==4 && <label className='text-white mb-2 text-sm'>Soporte</label>}
+              {position==5 && <label className='text-white mb-2 text-sm'>Líder de proyecto</label>}
+            </div>
 
-      <React.Fragment>
-        <h4>Correo: </h4>
-        <input type="text" name="email" value={employeeData.email} onChange={handleInputChange} />
-      </React.Fragment>
+            <div>
+              <h4 className='text-white text-lg  font-bold mb-2'>Correo: </h4>
+              <label className='text-white mb-2 text-sm'>{email}</label>
+            </div> */}
 
-      <React.Fragment>
-        <h4>Teléfono: </h4>
-        <input type="text" name="phone" value={employeeData.phone} onChange={handleInputChange} />
-      </React.Fragment>
-
-      <React.Fragment>
-        <h4>Foto:</h4>
-        <input type="text" name="photo" value={employeeData.photo} onChange={handleInputChange} />
-      </React.Fragment>
-    </React.Fragment>
-  );
+            {/* <div>
+              <h4 className='text-white text-lg  font-bold mb-2'>Teléfono: </h4>
+              <label className='text-white mb-2 text-sm'>{phone}</label>
+            </div> */}
+        </div>
+    )
 }
 
-export default Card;
+export default Card

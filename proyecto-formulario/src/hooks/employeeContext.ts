@@ -7,10 +7,8 @@ export interface EmployeeForm {
   position: number; // Gerente, Desarrollador jr, Desarrollador sr, Soporte o Lider de proyecto
   email: string;
   phone: string;
-  photo: path.ParsedPath; // ruta de la imagen
+  photo?: string; // ruta de la imagen
 }
-
-//const defaultBirthdate = new Date("0000-00-00");
 
 export const employeeInitialState: EmployeeForm = {
   name: '',
