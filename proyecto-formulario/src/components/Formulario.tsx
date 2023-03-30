@@ -3,6 +3,7 @@ import React, {createContext, useContext, useState,FormEvent,useReducer} from 'r
 import './../css/style.css'
 import useForm from '../hooks/useForm.ts';
 import { EmployeeContextData, employeeInitialState, EmployeeContext, EmployeeForm } from '../hooks/employeeContext.ts';
+import useToggleButton from '../hooks/toggleButton';
 
 function Formulario(){
 
@@ -17,7 +18,12 @@ function Formulario(){
     handleChange} = useContext<EmployeeContextData>(EmployeeContext); 
 
   const [, setImagePreview] = useState('');
+  const [{ isOn }, toggle] = useToggleButton();
 
+  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault(); // evita que la página se recargue
+    toggle();
+  };
   
   const handleImageChange = (e) => {
   const selectedFile = e.target.files[0];
@@ -30,6 +36,7 @@ function Formulario(){
             <form className='form' className="bg-blue-900 shadow-2xl shadow-indigo-800 px-8 pt-6 pb-8 mb">
               <div className="employeeName" className='mb-4'>
                 <label className="block text-white font-bold text-sm  mb-2">Nombre del empleado</label>
+                {name==''&& <label>Rellenalo!!!!</label> }
                 <input
                   className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 mb-3" 
                   type="text" 
@@ -41,6 +48,7 @@ function Formulario(){
 
               <div className="birthDate">
                 <label className="block text-white font-bold text-sm  mb-2">Fecha de nacimiento</label>
+                {birthdate==''&& <label>Selecciona algo!!!!</label> }
                 <input
                   className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 mb-3" 
                   type="date" 
@@ -50,6 +58,7 @@ function Formulario(){
 
               <div className="jobRole">
                 <label className="block text-white font-bold text-sm  mb-2">Puesto de trabajo</label>
+                
                 <select
                   name="position" 
                   value={position}
@@ -65,6 +74,7 @@ function Formulario(){
               <div className='flex justify-between space-x-1'>
                 <div className="email">
                   <label className="block text-white font-bold text-sm  mb-2">Email</label>
+                  {email==''&& <label>Rellenalo!!!!</label> }
                   <input
                     className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 mb-3" 
                     type="email" 
@@ -75,6 +85,7 @@ function Formulario(){
 
                 <div className="phone">
                   <label className="block text-white font-bold text-sm  mb-2">Telefono</label>
+                  {phone==''&& <label>Rellenalo!!!!</label> }
                   <input
                     className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 mb-3" 
                     type="text" 
@@ -85,6 +96,7 @@ function Formulario(){
               </div> 
               <div className="image">
                 <label className= "block text-white font-bold text-sm  mb-2">Imagen</label>
+                {photo==''&& <label>Escoge algo!!!!</label> }
                 <input 
                   type="file" 
                   name="photo" 
@@ -94,10 +106,10 @@ function Formulario(){
               </div> 
 
               <div className="state">
-                {/* <button className={state ? "active" : ""} onClick={handleChange}>
-                  {state ? "Activado" : "Desactivado"}
-                  {console.log(state)}
-                </button> */}
+               <button onClick={handleButtonClick}>
+                  {isOn ? "Desbloqueado" : "Bloqueado"}
+                  {console.log(isOn)}
+               </button>
               </div> 
             </form>
           </div> 

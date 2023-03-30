@@ -21,8 +21,8 @@ function Card(){
          <div >
         <div className='max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-auto my-auto'>
             <div>
-              {imagePreview && <img src={imagePreview} alt="Employee photo" className='rounded-t-lg mb-2' />}
-           </div>
+              {photo && <label src={photo} alt="Employee photo" className='rounded-t-lg mb-2' >{photo}</label>}
+            </div>
             <div>
               <h4 className='text-white text-lg font-bold mb-2' >Nombre: </h4>
               <label className='text-white mb-2 text-sm'>{name}</label>

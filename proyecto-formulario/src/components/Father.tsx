@@ -7,22 +7,17 @@ import Card from './Card'
 
 function Father(){
 
-  const [data, handleChange] = useForm<EmployeeForm>(employeeInitialState);
+  const [data, handleChange,isToggled,handleToggle] = useForm<EmployeeForm>(employeeInitialState);
   const {name, birthdate , position, email,phone,photo} = data;
   const [state, setState] = useState(false);
-  const [imagePreview, setImagePreview] = useState('');
 
   // const change = (e: FormEvent<HTMLFormElement>) => {
   //   e.preventDefault();
   //   setState(!state);
   // };
+  
 
-  const handleImageChange = (e) => {
-  const selectedFile = e.target.files[0];
-  handleChange(e); // call the handleChange function to update the `photo` state
-  setImagePreview(URL.createObjectURL(selectedFile)); // set the image preview URL
-  }
- 
+
   const contextData : EmployeeContextData = {
     data,
     handleChange
