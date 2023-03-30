@@ -31,8 +31,14 @@ function Father(){
     return(
       <div>
         <EmployeeContext.Provider value={contextData}>
-          <Formulario/>
-          <Card/>
+          <div className='flex flex-col'>
+          <div>
+            <Formulario/>
+          </div>
+          <div className=''>
+            <Card/>
+          </div>
+          </div>
         </EmployeeContext.Provider> 
       </div>
     )

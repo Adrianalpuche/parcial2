@@ -16,12 +16,14 @@ function Formulario(){
   },
     handleChange} = useContext<EmployeeContextData>(EmployeeContext); 
 
-  // const [imagePreview, setImagePreview] = useState('');
+  const [, setImagePreview] = useState('');
 
+  
   const handleImageChange = (e) => {
   const selectedFile = e.target.files[0];
   handleChange(e); // call the handleChange function to update the `photo` state
-  setImagePreview(URL.createObjectURL(selectedFile)); // set the image preview URL
+  setImagePreview(URL.createObjectURL(selectedFile)); 
+  };
   
   return(
           <div className='flex justify-center items-center h-screen'>
@@ -37,16 +39,16 @@ function Formulario(){
                 />
               </div>
 
-              {/* <div className="birthDate">
+              <div className="birthDate">
                 <label className="block text-white font-bold text-sm  mb-2">Fecha de nacimiento</label>
                 <input
                   className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 mb-3" 
                   type="date" 
                   name='birthdate'  
                   value={birthdate} onChange={handleChange}/>
-              </div>           */}
+              </div>          
 
-              {/* <div className="jobRole">
+              <div className="jobRole">
                 <label className="block text-white font-bold text-sm  mb-2">Puesto de trabajo</label>
                 <select
                   name="position" 
@@ -59,8 +61,8 @@ function Formulario(){
                   <option value={4} >Soporte</option>
                   <option value={5} >Lider de proyecto</option>
                 </select>
-              </div> */}
-              {/* <div className='flex justify-between space-x-1'>
+              </div> 
+              <div className='flex justify-between space-x-1'>
                 <div className="email">
                   <label className="block text-white font-bold text-sm  mb-2">Email</label>
                   <input
@@ -69,9 +71,9 @@ function Formulario(){
                     placeholder='email' 
                     name='email'  
                     value={email} onChange={handleChange}/>
-                </div> */}
+                </div>
 
-                {/* <div className="phone">
+                <div className="phone">
                   <label className="block text-white font-bold text-sm  mb-2">Telefono</label>
                   <input
                     className="border py-2 px-4 rounded focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 mb-3" 
@@ -79,10 +81,9 @@ function Formulario(){
                     placeholder='teléfono' 
                     name='phone' 
                     value={phone} onChange={handleChange}/>
-                </div> */}
-              {/* </div> */}
-
-              {/* <div className="image">
+                </div> 
+              </div> 
+              <div className="image">
                 <label className= "block text-white font-bold text-sm  mb-2">Imagen</label>
                 <input 
                   type="file" 
@@ -90,18 +91,17 @@ function Formulario(){
                   accept="image/png, image/jpeg" 
                   onChange={handleImageChange}
                 />
-              </div> */}
+              </div> 
 
-              {/* <div className="state">
-                <button className={state ? "active" : ""} onClick={handleChange}>
+              <div className="state">
+                {/* <button className={state ? "active" : ""} onClick={handleChange}>
                   {state ? "Activado" : "Desactivado"}
                   {console.log(state)}
-                </button>
-              </div> */}
+                </button> */}
+              </div> 
             </form>
           </div> 
     )
-  }
 }
 
-export default Formulario
+export default Formulario;

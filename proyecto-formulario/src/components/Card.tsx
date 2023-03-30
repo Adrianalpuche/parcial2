@@ -18,20 +18,20 @@ function Card(){
 }} = useContext<EmployeeContextData>(EmployeeContext);
 
     return(   
-        <div>
-            {/* <div>
+         <div >
+        <div className='max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-auto my-auto'>
+            <div>
               {imagePreview && <img src={imagePreview} alt="Employee photo" className='rounded-t-lg mb-2' />}
-           </div> */}
+           </div>
             <div>
               <h4 className='text-white text-lg font-bold mb-2' >Nombre: </h4>
               <label className='text-white mb-2 text-sm'>{name}</label>
             </div>
 
-            {/* <div>
+             <div>
               <h4 className='text-white text-lg  font-bold mb-2'>Fecha de nacimiento: </h4>
               <label className='text-white mb-2 text-sm'>{birthdate}</label>
             </div>
-
             <div>
               <h4 className='text-white text-lg  font-bold mb-2'>Puesto: </h4>
               {position==1 && <label className='text-white mb-2 text-sm'>Gerente</label>}
@@ -40,18 +40,18 @@ function Card(){
               {position==4 && <label className='text-white mb-2 text-sm'>Soporte</label>}
               {position==5 && <label className='text-white mb-2 text-sm'>Líder de proyecto</label>}
             </div>
-
             <div>
               <h4 className='text-white text-lg  font-bold mb-2'>Correo: </h4>
               <label className='text-white mb-2 text-sm'>{email}</label>
-            </div> */}
-
-            {/* <div>
+            </div> 
+            <div>
               <h4 className='text-white text-lg  font-bold mb-2'>Teléfono: </h4>
               <label className='text-white mb-2 text-sm'>{phone}</label>
-            </div> */}
+            </div>
+        </div>
         </div>
     )
+    
 }
 
 export default Card
